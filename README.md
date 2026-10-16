@@ -67,7 +67,7 @@ You only need **two things**:
 2. Send the message `/newbot`.
 3. Choose a display name (e.g. `My Pixel Bot`) and a username ending in `bot` (e.g. `mypixel_gemini_bot`).
 4. BotFather will give you a token that looks like:  
-   `8280898694:AAGfDuxHXDxyNF8BaAlFBX8KsHIOviWF6ps`
+   `12564782:abcsddsgh`
 5. Keep this token handy — you will paste it when the terminal asks for it!
 
 ---
@@ -81,7 +81,7 @@ You only need **two things**:
    git clone https://github.com/noyonbee-cmd/pixel-gemini.git
    cd pixel-gemini
    ```
-2. **Double-click [`start_bot.bat`](file:///c:/Users/almas/OneDrive/Desktop/pixel%20offer/start_bot.bat).**
+2. **Double-click [`start_bot.bat`].**
 3. **Automatic Installation:** The script automatically:
    - Checks your Python version.
    - Creates the virtual environment (`venv`).
