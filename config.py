@@ -3,6 +3,11 @@ Configuration and constants for the Pixel 10 Pro Google One Gemini Bot.
 """
 
 import os
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # ── Telegram ──────────────────────────────────────────────────────────────────
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
@@ -42,20 +47,30 @@ GOOGLE_ONE_OFFERS_URL = "https://one.google.com/about/plans"
 GEMINI_OFFER_KEYWORDS = [
     "gemini pro",
     "gemini advanced",
+    "gemini",
+    "ai premium",
+    "ai_premium",
     "12 month",
     "12-month",
-    "free trial",
-    "activate",
-    "get started",
-    "claim offer",
-    "redeem",
+    "2 tb ai",
 ]
 
 # ── Selenium / WebDriver ──────────────────────────────────────────────────────
 WEBDRIVER_TIMEOUT = 30          # seconds – explicit wait
 IMPLICIT_WAIT = 10              # seconds
 PAGE_LOAD_TIMEOUT = 60          # seconds
-HEADLESS = True                 # always headless on Replit
+HEADLESS = os.environ.get("HEADLESS", "true").lower() in ("true", "1", "yes")
+PROXY = os.environ.get("PROXY", "")  # Optional proxy (e.g. US/India IP)
+
+# Google's officially eligible promotion countries for Pixel 10 Pro / Pixel 9 Pro:
+ELIGIBLE_COUNTRIES = {
+    "Australia", "Austria", "Belgium", "Canada", "Czechia", "Denmark",
+    "Estonia", "Finland", "France", "Germany", "Hungary", "India",
+    "Ireland", "Italy", "Latvia", "Lithuania", "Malaysia", "Mexico",
+    "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Singapore",
+    "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Taiwan",
+    "United Kingdom", "United States",
+}
 
 # ── Session storage ───────────────────────────────────────────────────────────
 # In-memory dict keyed by Telegram chat_id.

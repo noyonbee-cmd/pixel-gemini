@@ -1,9 +1,30 @@
-__pycache__/
-*.pyc
-*.pyo
+# Secrets and sensitive user data
 .env
+gemini_offers.txt
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution and packaging
 *.egg-info/
 dist/
 build/
-.venv/
-venv/
+
+# IDE and temporary files
+.vscode/
+.idea/
+*.log
+scratch/
+.system_generated/

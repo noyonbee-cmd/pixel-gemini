@@ -1,136 +1,167 @@
-# pixel-gemini
+# 📱 Pixel 10 Pro Google One Gemini Bot
 
-**Pixel 10 Pro Google One Gemini Offer Bot – Telegram Interface**
+A high-performance Telegram bot that emulates a **Google Pixel 10 Pro (Android 16)** device to log into Google One and detect/extract the **12-month free Gemini Pro (Google One AI Premium)** offer link.
 
-A Replit-hosted Telegram bot that simulates a Google Pixel 10 Pro (Android 16)
-device, logs into a user-supplied Gmail account, and retrieves the
-**12-month free Gemini Pro** activation link from Google One.
+Featuring an **in-Telegram mobile reCAPTCHA solver**, background headless automation, auto-saving of captured links, and full proxy/regional support.
 
 ---
 
-## Project Structure
+## ✨ Features
 
-```
-pixel-gemini/
-├── main.py               # Telegram bot entry point
-├── device_simulator.py   # Android Pixel 10 Pro device simulation
-├── google_automation.py  # Google One login and offer detection
-├── config.py             # Configuration and constants
-├── requirements.txt      # Python dependencies
-└── README.md             # This file
-```
+- **📱 Pixel 10 Pro (Android 16) Emulation:** Simulates real Pixel 10 Pro hardware characteristics (IMEI, Android ID, mobile viewport `390x844`, custom Chrome 124 UA) with Chrome DevTools Protocol (CDP) anti-detection.
+- **🧩 In-Telegram Mobile reCAPTCHA Solver:** Solves reCAPTCHA visual tile puzzles directly inside Telegram on your phone! Challenge images are automatically cropped, numbered with badges (`1` to `9` or `16`), and paired with an interactive button grid. No desktop browser or monitor required.
+- **🚀 100% Background / Headless Ready:** Runs completely silently in background mode (`HEADLESS=true`). Perfect for running on Linux servers, Windows RDPs, or local PCs while controlling everything from your mobile phone.
+- **🌐 Regional Support & Proxy Manager:** Google's promotional terms officially support regions including **India 🇮🇳**, **United States 🇺🇸**, **United Kingdom 🇬🇧**, Canada, Australia, and more. Manage proxies on the fly with `/proxy`, `/set_proxy`, and `/clear_proxy`.
+- **💾 Automatic Offer Storage:** Successfully captured promotion links are automatically timestamped and saved to `gemini_offers.txt`.
+- **⚡ Interactive Terminal Setup:** When launched, the script automatically verifies and installs missing dependencies and prompts for your Telegram Bot Token if not yet configured.
 
 ---
 
-## Features
+## 🚀 Quick Start
 
-| Feature | Details |
-|---|---|
-| 📱 Device simulation | Pixel 10 Pro (Android 16) with unique IMEI, Android ID, and user-agent per session |
-| 🤖 Telegram bot | `/start`, `/login`, `/check_offer`, `/get_link`, `/status` commands |
-| 🔐 Gmail login | Selenium-based Google account authentication |
-| 💳 Offer detection | Scans Google One for the 12-month Gemini Pro offer and extracts the activation link |
-| 🔄 Session management | In-memory per-user sessions; passwords deleted from chat on capture |
+### Option A: Windows (One-Click)
 
----
-
-## Setup on Replit
-
-### 1. Fork / import this repository
-
-Open [Replit](https://replit.com) and create a new Repl from this GitHub repo.
-
-### 2. Create a Telegram Bot
-
-1. Open Telegram and search for **@BotFather**.
-2. Send `/newbot` and follow the prompts.
-3. Copy the API token you receive (looks like `123456:ABC-DEF…`).
-
-### 3. Set the environment variable
-
-In the Replit sidebar click **Secrets** (🔒) and add:
-
-| Key | Value |
-|---|---|
-| `TELEGRAM_BOT_TOKEN` | Your token from BotFather |
-
-### 4. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Replit runs this automatically on first start if you use a `pyproject.toml`
-or if the Run button is configured to execute `pip install` first.
-
-### 5. Run the bot
-
-Click **Run** in Replit, or execute:
-
-```bash
-python main.py
-```
-
-The bot will start polling for Telegram updates.
+1. Clone or download this repository:
+   ```bash
+   git clone https://github.com/noyonbee-cmd/pixel-gemini.git
+   cd pixel-gemini
+   ```
+2. Double-click **`start_bot.bat`**.
+3. If this is your first time, the terminal will automatically create a virtual environment, install requirements, and prompt you:
+   ```text
+   👉 Enter your Telegram Bot Token: 
+   ```
+4. Paste your token from [@BotFather](https://t.me/BotFather). The bot will save it to `.env` and start immediately!
 
 ---
 
-## Usage
+### Option B: Linux / VPS / RDP (One-Click)
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/noyonbee-cmd/pixel-gemini.git
+   cd pixel-gemini
+   ```
+2. Make the script executable and run:
+   ```bash
+   chmod +x start_bot.sh
+   ./start_bot.sh
+   ```
+3. Enter your Telegram Bot Token when prompted.
+
+---
+
+### Option C: Manual Setup
+
+1. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Configure `.env`:**
+   Copy `.env.example` to `.env` or run `python main.py` to configure interactively:
+   ```env
+   TELEGRAM_BOT_TOKEN=your_token_from_botfather
+   HEADLESS=true
+   PROXY=
+   ```
+3. **Start the bot:**
+   ```bash
+   python main.py
+   ```
+
+---
+
+## 🤖 Telegram Commands
 
 | Command | Description |
 |---|---|
-| `/start` | Show welcome message and command list |
-| `/login` | Enter Gmail email and password (two-step conversation) |
-| `/check_offer` | Simulate device, log in, and search for the Gemini Pro offer |
+| `/start` | Show welcome message, features, and command list |
+| `/login` | Enter your Gmail email and password (two-step secure conversation) |
+| `/check_offer` | Simulate Pixel 10 Pro, log into Google One, and scan for Gemini Pro |
+| `/proxy` | Check current public IP, country, and promotion eligibility |
+| `/set_proxy <url>` | Set an HTTP or SOCKS5 proxy (e.g. `/set_proxy http://ip:port`) |
+| `/clear_proxy` | Revert to direct connection (ideal on India RDP) |
+| `/headless on\|off` | Toggle background headless mode (default: `on`) |
 | `/get_link` | Retrieve the last captured offer link |
-| `/status` | View current session info and device profile |
+| `/saved_links` | View all captured links saved in `gemini_offers.txt` |
+| `/status` | View current session status and active device profile |
+| `/cancel` | Cancel current ongoing conversation |
 
-### Typical flow
+---
+
+## 📱 In-Telegram Mobile reCAPTCHA Solver
+
+When Google prompts for a security verification (reCAPTCHA puzzle), you don't need a desktop screen:
 
 ```
-You: /start
-Bot: Welcome…
++───────────────────────────────────────────────────+
+│       🧩 reCAPTCHA Image Puzzle                   │
+│       Instructions: Select all squares with cars  │
+│                                                   │
+│       [ 1 ] [ 2 ] [ 3 ]                           │
+│       [ 4 ] [ 5 ] [ 6 ]                           │
+│       [ 7 ] [ 8 ] [ 9 ]                           │
+│                                                   │
+│   [ 1 ]       [ 🟢 2 ]     [ 3 ]                  │
+│   [ 4 ]       [ 5 ]        [ 🟢 6 ]               │
+│   [ 7 ]       [ 8 ]        [ 9 ]                  │
+│   [🔄 New Puzzle] [📸 Refresh] [✅ Verify]        │
++───────────────────────────────────────────────────+
+```
 
-You: /login
-Bot: Please enter your Gmail address:
+1. The bot sends a high-resolution, auto-cropped photo of the challenge box with numbered badges (`1` to `9`).
+2. Tap the corresponding numbers on the inline button grid to select tiles (e.g., tap `2` -> turns to `🟢 2`).
+3. Tap **`✅ Verify`** to finish the challenge.
+4. If more images fade in, tap **`📸 Refresh`** to update the photo.
 
-You: user@gmail.com
-Bot: Email received. Now enter your password:
+---
 
-You: ••••••••
-Bot: ✅ Credentials saved. New Pixel 10 Pro device profile created…
+## 🌐 Regional Eligibility & India RDP Guide
 
-You: /check_offer
-Bot: ⏳ Launching device simulator…
-Bot: 🎉 Gemini Pro Offer Found! 🔗 https://one.google.com/…
+Google One's official promotional terms for the Pixel 12-month Gemini Advanced offer officially include:
+> **Australia, Austria, Belgium, Canada, Czechia, Denmark, Estonia, Finland, France, Germany, Hungary, India, Ireland, Italy, Latvia, Lithuania, Malaysia, Mexico, Netherlands, Norway, Poland, Portugal, Romania, Singapore, Slovakia, Slovenia, Spain, Sweden, Switzerland, Taiwan, United Kingdom, United States.**
+
+### Running on an India RDP:
+- If you host this bot on an **India RDP**, your network IP is already recognized as India (`IN`).
+- India is an officially eligible country! **No external VPN or proxy is needed on an India RDP.**
+- Use `/proxy` in chat to verify:
+  ```
+  • Public IP: 103.xxx.xxx.xxx
+  • Detected Country: 🇮🇳 India
+  • Promotion Status: ✅ Eligible Region!
+  ```
+
+### Running Outside Eligible Regions:
+- If your native connection is in an unsupported country, use `/set_proxy http://us-ip:port` or connect your host machine to a US/India VPN before running `/check_offer`.
+
+---
+
+## 📁 Project Structure
+
+```text
+pixel-gemini/
+├── main.py               # Telegram bot handlers & interactive CLI setup
+├── google_automation.py  # Selenium automation, stealth script & CAPTCHA bridge
+├── device_simulator.py   # Android 16 Pixel 10 Pro profile & hardware simulation
+├── config.py             # Global settings, constants & country eligibility
+├── requirements.txt      # Python package dependencies
+├── start_bot.bat         # One-click Windows runner & auto-installer
+├── start_bot.sh          # One-click Linux/VPS runner
+├── .env.example          # Environment variables template
+├── .gitignore            # Git exclusion rules (keeps credentials private)
+└── README.md             # Documentation
 ```
 
 ---
 
-## Technical Notes
+## 🔒 Security & Privacy
 
-- **Headless Chrome** is used via Selenium with mobile emulation matching
-  the Pixel 10 Pro screen dimensions (390 × 844, pixel ratio 3.0).
-- A new **IMEI**, **Android ID**, and **Chrome version patch** are generated
-  for every session using the `device_simulator.py` module.
-- The **user agent** keeps the Pixel 10 Pro identity constant while varying
-  the Chrome patch version and Android ID to reduce fingerprinting.
-- Credentials are stored **in memory only** and never written to disk.
-  The Telegram message containing the password is deleted immediately after
-  being read.
+- **In-Memory Credential Handling:** Passwords are held in memory only for the active session duration and are never saved to disk.
+- **Git Safety:** `.env` and `gemini_offers.txt` are included in `.gitignore` to prevent accidental credential leaks.
+- Always use a secondary or test account when performing automation.
 
 ---
 
-## Requirements
+## 📄 License
 
-- Python 3.10+
-- Google Chrome / Chromium installed (Replit provides this)
-- `chromedriver` on PATH (managed automatically by `webdriver-manager`)
-
----
-
-## Disclaimer
-
-This project is provided for educational and personal use only.
-Automating Google account access may violate Google's Terms of Service.
-Use responsibly and only with accounts you own.
+This project is licensed under the MIT License.
